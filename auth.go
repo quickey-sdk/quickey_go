@@ -24,7 +24,6 @@ func (q *Response) GetAccessTokenByEmail(email string, provider string) *Auth {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	defer responseJSON.Body.Close()
 
 	var responseMap map[string]interface{}
@@ -42,7 +41,6 @@ func (q *Response) GetAccessTokenByEmail(email string, provider string) *Auth {
 }
 
 func (q *Response) GetAccessTokenByPhone(phone string, provider string) *Auth {
-
 	values := map[string]string{"phone": phone, "provider": provider}
 	json_data, err := json.Marshal(values)
 	if err != nil {
@@ -55,11 +53,9 @@ func (q *Response) GetAccessTokenByPhone(phone string, provider string) *Auth {
 
 	client := &http.Client{}
 	responseJSON, err := client.Do(request)
-
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	defer responseJSON.Body.Close()
 
 	var responseMap map[string]interface{}
@@ -77,7 +73,6 @@ func (q *Response) GetAccessTokenByPhone(phone string, provider string) *Auth {
 }
 
 func (q *Response) linkPhoneToEmail(phone string, token string) *Customer {
-
 	values := map[string]string{"phone": phone, "token": token}
 	json_data, err := json.Marshal(values)
 	if err != nil {
@@ -90,11 +85,9 @@ func (q *Response) linkPhoneToEmail(phone string, token string) *Customer {
 
 	client := &http.Client{}
 	responseJSON, err := client.Do(request)
-
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	defer responseJSON.Body.Close()
 
 	var responseMap map[string]interface{}
