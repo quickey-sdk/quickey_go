@@ -20,11 +20,13 @@ type App struct {
 	RedirectUri    string `json:"redirectUri"`
 	RedirectUrlApp string `json:"redirectUrlApp"`
 	ApiKey         string `json:"apiKey"`
+	Message        string `json:"message"`
 }
 
 type Auth struct {
-	Token string `json:"access_token"`
-	User  string `json:"user"`
+	Token   string `json:"access_token"`
+	User    string `json:"user"`
+	Message string `json:"message"`
 }
 
 type Customer struct {
@@ -32,6 +34,7 @@ type Customer struct {
 	Phone   string `json:"phone"`
 	OTP     string `json:"otp"`
 	Expires string `json:"expires"`
+	Message string `json:"message"`
 }
 
 func New(api_key string) *Response {
