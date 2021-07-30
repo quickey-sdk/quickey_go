@@ -13,18 +13,33 @@ import quickey 'github.com/quickey-sdk/quickey_go'
 
 q := quickey.New("YOUR API KEY")
 ```
+
 ### Get App Data
 ```
 appData := q.GetMetadata()
 fmt.Println(appData)
 ```
-### Get Access Token
+
+### Get Access Token By Email
 ```
-accessToken := q.GetAccessToken(appData.Email).Token
-
-or 
-
-accessToken := q.GetAccessToken("YOUR APP EMAIL").Token
+accessToken := q.GetAccessTokenByEmail("YOUR EMAIL", "YOUR PROVIDER").Token
 fmt.Println(accessToken)
 ```
 
+### Get Access Token By Phone
+```
+accessToken := q.GetAccessTokenByPhone("YOUR PHONE", "YOUR PROVIDER").Token
+fmt.Println(accessToken)
+```
+
+### Send SMS OTP
+```
+response := q.SendSMSOTP("YOUR PHONE", "YOUR PROVIDER")
+fmt.Println(response)
+```
+
+### Link Phone To Email
+```
+response := q.LinkPhoneToEmail("YOUR PHONE", "YOUR TOKEN").Token
+fmt.Println(response)
+```
