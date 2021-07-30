@@ -8,7 +8,6 @@ import (
 )
 
 func (q *Response) GetMetadata() *App {
-
 	values := map[string]string{"apiKey": q.ApiKey}
 	json_data, err := json.Marshal(values)
 	if err != nil {
@@ -17,7 +16,6 @@ func (q *Response) GetMetadata() *App {
 
 	responseJSON, err := http.Post(q.BaseUrl+"/auth/apiKey", "application/json",
 		bytes.NewBuffer(json_data))
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -37,7 +35,6 @@ func (q *Response) GetMetadata() *App {
 }
 
 func (q *Response) SendSMSOTP(phone string, provider string, appId string) *Customer {
-
 	values := map[string]string{"phone": phone, "provider": provider}
 	json_data, err := json.Marshal(values)
 	if err != nil {
@@ -54,7 +51,6 @@ func (q *Response) SendSMSOTP(phone string, provider string, appId string) *Cust
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	defer responseJSON.Body.Close()
 
 	var responseMap map[string]interface{}
