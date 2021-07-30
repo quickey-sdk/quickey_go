@@ -40,6 +40,6 @@ fmt.Println(response)
 
 ### Link Phone To Email
 ```
-response := q.LinkPhoneToEmail("YOUR PHONE", "YOUR TOKEN").Token
+response := q.LinkPhoneToEmail("YOUR PHONE", "YOUR TOKEN")
 fmt.Println(response)
 ```
