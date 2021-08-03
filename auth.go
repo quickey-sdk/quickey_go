@@ -40,8 +40,9 @@ func (q *Response) GetAccessTokenByEmail(email string, provider string) *Auth {
 	return &auth
 }
 
-func (q *Response) GetAccessTokenByPhone(phone string, provider string) *Auth {
-	values := map[string]string{"phone": phone, "provider": provider}
+func (q *Response) GetAccessTokenByPhone(phone string, provider string, otpCode string) *Auth {
+
+	values := map[string]string{"phone": phone, "provider": provider, "otpCode": otpCode}
 	json_data, err := json.Marshal(values)
 	if err != nil {
 		log.Fatal(err)
@@ -53,9 +54,11 @@ func (q *Response) GetAccessTokenByPhone(phone string, provider string) *Auth {
 
 	client := &http.Client{}
 	responseJSON, err := client.Do(request)
+
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	defer responseJSON.Body.Close()
 
 	var responseMap map[string]interface{}
