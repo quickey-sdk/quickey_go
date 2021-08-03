@@ -28,7 +28,7 @@ fmt.Println(accessToken)
 
 ### Get Access Token By Phone
 ```
-accessToken := q.GetAccessTokenByPhone("YOUR PHONE", "YOUR PROVIDER").Token
+accessToken := q.GetAccessTokenByPhone("YOUR PHONE", "YOUR PROVIDER", "YOUR OTP CODE").Token
 fmt.Println(accessToken)
 ```
 
