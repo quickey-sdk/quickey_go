@@ -36,7 +36,7 @@ func (q *Response) GetMetadata() *App {
 	return &app
 }
 
-func (q *Response) SendSMSOTP(phone string, provider string) *Customer {
+func (q *Response) SendOTP(phone string, provider string) *Customer {
 
 	values := map[string]string{"phone": phone, "provider": provider}
 	json_data, err := json.Marshal(values)
