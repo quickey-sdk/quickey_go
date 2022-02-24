@@ -1,7 +1,7 @@
 package quickey
 
 const (
-	APIVersion = "v0.1.0"
+	APIVersion = "v0.1.1"
 	APIURL     = "https://api.getquickey.com"
 )
 
@@ -35,6 +35,14 @@ type Customer struct {
 	OTP     string `json:"otp"`
 	Expires string `json:"expires"`
 	Message string `json:"message"`
+}
+
+
+type VerifiedData struct {
+	Email   string `json:"email"`
+	Phone   string `json:"phone"`
+	Id     string `json:"_id"`
+	JWTExpires string `json:"iat"`
 }
 
 func New(api_key string) *Response {

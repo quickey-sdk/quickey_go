@@ -75,6 +75,38 @@ func (q *Response) GetAccessTokenByPhone(phone string, provider string, otpCode 
 	return &auth
 }
 
+func (q *Response) VerifyToken(token string) *VerifiedData {
+	values := map[string]string{"token": token}
+	json_data, err := json.Marshal(values)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	request, err := http.NewRequest("POST", q.BaseUrl+"/auth/verifyToken", bytes.NewBuffer(json_data))
+	request.Header.Set("Content-Type", "application/json; charset=UTF-8")
+	request.Header.Set("authorization", q.ApiKey)
+
+	client := &http.Client{}
+	responseJSON, err := client.Do(request)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer responseJSON.Body.Close()
+
+	var responseMap map[string]interface{}
+	json.NewDecoder(responseJSON.Body).Decode(&responseMap)
+
+	responseBytes, err := json.Marshal(responseMap)
+
+	responseString := string(responseBytes)
+
+	verified := VerifiedData{}
+	json.Unmarshal([]byte(responseString), &verified)
+	q.VerifiedData = append(q.VerifiedData, verified)
+
+	return &verified
+}
+
 func (q *Response) linkPhoneToEmail(phone string, token string) *Customer {
 	values := map[string]string{"phone": phone, "token": token}
 	json_data, err := json.Marshal(values)
